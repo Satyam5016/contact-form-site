@@ -1,0 +1,21 @@
+<form id="contactForm">
+  <input type="text" name="name" placeholder="Your Name" required /><br>
+  <input type="email" name="email" placeholder="Your Email" required /><br>
+  <input type="tel" name="phone" placeholder="Phone Number" required /><br>
+  <textarea name="message" placeholder="Your Message" required></textarea><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("-uqvuhOrUB16vio7W");
+  })();
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    emailjs.sendForm('service_rmkehg9', 'template_v18rwo6', this)
+      .then(() => alert("Message Sent!"))
+      .catch((error) => alert("Failed: " + error));
+  });
+</script>
